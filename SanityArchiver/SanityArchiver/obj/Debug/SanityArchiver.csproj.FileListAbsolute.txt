@@ -1,0 +1,10 @@
+C:\Users\Work\C#\SanityArchiver\SanityArchiver\SanityArchiver\obj\Debug\SanityArchiver.csprojAssemblyReference.cache
+C:\Users\Work\C#\SanityArchiver\SanityArchiver\SanityArchiver\obj\Debug\SanityArchiver.AttributsForm.resources
+C:\Users\Work\C#\SanityArchiver\SanityArchiver\SanityArchiver\obj\Debug\SanityArchiver.SanityCommanderMainWindow.resources
+C:\Users\Work\C#\SanityArchiver\SanityArchiver\SanityArchiver\obj\Debug\SanityArchiver.Properties.Resources.resources
+C:\Users\Work\C#\SanityArchiver\SanityArchiver\SanityArchiver\obj\Debug\SanityArchiver.csproj.GenerateResource.cache
+C:\Users\Work\C#\SanityArchiver\SanityArchiver\SanityArchiver\bin\Debug\SanityArchiver.exe.config
+C:\Users\Work\C#\SanityArchiver\SanityArchiver\SanityArchiver\bin\Debug\SanityArchiver.exe
+C:\Users\Work\C#\SanityArchiver\SanityArchiver\SanityArchiver\bin\Debug\SanityArchiver.pdb
+C:\Users\Work\C#\SanityArchiver\SanityArchiver\SanityArchiver\obj\Debug\SanityArchiver.exe
+C:\Users\Work\C#\SanityArchiver\SanityArchiver\SanityArchiver\obj\Debug\SanityArchiver.pdb

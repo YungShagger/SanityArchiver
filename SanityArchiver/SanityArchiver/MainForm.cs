@@ -26,8 +26,16 @@ namespace SanityArchiver
             listViewRight.ItemActivate += new System.EventHandler(this.RightItemSingleClick);
             listViewLeft.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ItemDoubleClick);
             listViewRight.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ItemDoubleClick);
-
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string leftRootDirName = Path.GetFullPath(leftRootString);
+            string rightRootDirName = Path.GetFullPath(rightRootString);
+            DirectoryManager.PopulateListView(listViewLeft, leftRootDirName, TextLeft);
+            DirectoryManager.PopulateListView(listViewRight, rightRootDirName, TextRight);
+        }
+
+
         private void LeftItemSingleClick(object sender, EventArgs e)
         {
             lastItemSelected = listViewLeft.SelectedItems[0];
@@ -54,7 +62,7 @@ namespace SanityArchiver
                 clickedItem = thisListView.Items[selectedRightIndex];
             }
 
-            if (clickedItem.SubItems[1].Text == "DIR")
+            if (clickedItem.SubItems[1].Text == "Directory")
             {
                 string dirName = "";
                 TextBox textBox = null;
@@ -87,7 +95,7 @@ namespace SanityArchiver
                     }
                 }
             }
-            else if (clickedItem.SubItems[1].Text != "DIR")
+            else if (clickedItem.SubItems[1].Text != "Directory")
             {
                 string fullFileName = DirectoryManager.GetFilePath(clickedItem.SubItems[0].Text + "." + clickedItem.SubItems[1].Text);
                 FileInfo thisFile = new FileInfo(fullFileName);
@@ -99,52 +107,58 @@ namespace SanityArchiver
 
 
 
-        private void label1_Click(object sender, EventArgs e)
+
+        private void CopyButton_Click(object sender, EventArgs e)
         {
-            string leftRootDirName = Path.GetFullPath(leftRootString);
-            string rightRootDirName = Path.GetFullPath(rightRootString);
-            DirectoryManager.PopulateListView(listViewLeft, leftRootDirName, TextLeft);
-            DirectoryManager.PopulateListView(listViewRight, rightRootDirName, TextRight);
+            ///not yet implemented
+        }
+        private void MoveButton_Click(object sender, EventArgs e)
+        {
+            ///not yet implemented
+        }
+        private void CompressButton_Click(object sender, EventArgs e)
+        {
+            ///not yet implemented
+        }
+        private void ExtractButton_Click(object sender, EventArgs e)
+        {
+            ///not yet implemented
+        }
+        private void EncriptButton_Click(object sender, EventArgs e)
+        {
+            ///not yet implemented
+        }
+        private void DecryptButton_Click(object sender, EventArgs e)
+        {
+            ///not yet implemented
+        }
+        private void AttributesButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string FileName = lastItemSelected.ListView.Name == "listViewLeft" ?
+                               leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text :
+                               rightRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text;
+
+                AttributsForm newForm = new AttributsForm(FileName);
+                newForm.Show();
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Please select a file to see its' attributes!");
+            }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
+
+
+        private void TextLeft_Click(object sender, EventArgs e)
+        {
+            ///not yet implemented
         }
-
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void TextRight_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button11_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BackButton2_Click(object sender, EventArgs e)
-        {
-
+            ///not yet implemented
         }
     }
 }

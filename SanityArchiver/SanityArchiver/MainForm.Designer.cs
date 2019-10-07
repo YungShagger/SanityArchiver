@@ -33,9 +33,8 @@
             this.ExtractButton = new System.Windows.Forms.Button();
             this.EncriptButton = new System.Windows.Forms.Button();
             this.DecryptButton = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.AttributesButton = new System.Windows.Forms.Button();
+            this.SearchButton = new System.Windows.Forms.Button();
             this.MoveButton = new System.Windows.Forms.Button();
             this.BackButton1 = new System.Windows.Forms.Button();
             this.BackButton2 = new System.Windows.Forms.Button();
@@ -55,6 +54,7 @@
             this.CopyButton.TabIndex = 3;
             this.CopyButton.Text = "Copy";
             this.CopyButton.UseVisualStyleBackColor = true;
+            this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
             // 
             // CompressButton
             // 
@@ -65,7 +65,7 @@
             this.CompressButton.TabIndex = 5;
             this.CompressButton.Text = "Compress";
             this.CompressButton.UseVisualStyleBackColor = true;
-            this.CompressButton.Click += new System.EventHandler(this.button3_Click);
+            this.CompressButton.Click += new System.EventHandler(this.CompressButton_Click);
             // 
             // ExtractButton
             // 
@@ -76,7 +76,7 @@
             this.ExtractButton.TabIndex = 6;
             this.ExtractButton.Text = "Extract";
             this.ExtractButton.UseVisualStyleBackColor = true;
-            this.ExtractButton.Click += new System.EventHandler(this.button4_Click);
+            this.ExtractButton.Click += new System.EventHandler(this.ExtractButton_Click);
             // 
             // EncriptButton
             // 
@@ -87,6 +87,7 @@
             this.EncriptButton.TabIndex = 7;
             this.EncriptButton.Text = "Encript";
             this.EncriptButton.UseVisualStyleBackColor = true;
+            this.EncriptButton.Click += new System.EventHandler(this.EncriptButton_Click);
             // 
             // DecryptButton
             // 
@@ -97,36 +98,28 @@
             this.DecryptButton.TabIndex = 8;
             this.DecryptButton.Text = "Decrypt";
             this.DecryptButton.UseVisualStyleBackColor = true;
+            this.DecryptButton.Click += new System.EventHandler(this.DecryptButton_Click);
             // 
-            // button7
+            // AttributesButton
             // 
-            this.button7.Location = new System.Drawing.Point(369, 195);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(74, 22);
-            this.button7.TabIndex = 9;
-            this.button7.Text = "Atributes";
-            this.button7.UseVisualStyleBackColor = true;
+            this.AttributesButton.Location = new System.Drawing.Point(369, 195);
+            this.AttributesButton.Margin = new System.Windows.Forms.Padding(2);
+            this.AttributesButton.Name = "AttributesButton";
+            this.AttributesButton.Size = new System.Drawing.Size(74, 22);
+            this.AttributesButton.TabIndex = 9;
+            this.AttributesButton.Text = "Atributes";
+            this.AttributesButton.UseVisualStyleBackColor = true;
+            this.AttributesButton.Click += new System.EventHandler(this.AttributesButton_Click);
             // 
-            // button9
+            // SearchButton
             // 
-            this.button9.Location = new System.Drawing.Point(727, 424);
-            this.button9.Margin = new System.Windows.Forms.Padding(2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(74, 22);
-            this.button9.TabIndex = 11;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(369, 273);
-            this.button10.Margin = new System.Windows.Forms.Padding(2);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(74, 22);
-            this.button10.TabIndex = 12;
-            this.button10.Text = "button10";
-            this.button10.UseVisualStyleBackColor = true;
+            this.SearchButton.Location = new System.Drawing.Point(727, 424);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(2);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(74, 22);
+            this.SearchButton.TabIndex = 11;
+            this.SearchButton.Text = "Search";
+            this.SearchButton.UseVisualStyleBackColor = true;
             // 
             // MoveButton
             // 
@@ -136,6 +129,7 @@
             this.MoveButton.TabIndex = 18;
             this.MoveButton.Text = "Move";
             this.MoveButton.UseVisualStyleBackColor = true;
+            this.MoveButton.Click += new System.EventHandler(this.MoveButton_Click);
             // 
             // BackButton1
             // 
@@ -145,7 +139,6 @@
             this.BackButton1.TabIndex = 19;
             this.BackButton1.Text = "Back";
             this.BackButton1.UseVisualStyleBackColor = true;
-            this.BackButton1.Click += new System.EventHandler(this.button11_Click_1);
             // 
             // BackButton2
             // 
@@ -155,7 +148,6 @@
             this.BackButton2.TabIndex = 20;
             this.BackButton2.Text = "Back";
             this.BackButton2.UseVisualStyleBackColor = true;
-            this.BackButton2.Click += new System.EventHandler(this.BackButton2_Click);
             // 
             // textBox1
             // 
@@ -191,6 +183,7 @@
             this.TextLeft.Name = "TextLeft";
             this.TextLeft.Size = new System.Drawing.Size(137, 20);
             this.TextLeft.TabIndex = 24;
+            this.TextLeft.Click += new System.EventHandler(this.TextLeft_Click);
             // 
             // TextRight
             // 
@@ -198,11 +191,13 @@
             this.TextRight.Name = "TextRight";
             this.TextRight.Size = new System.Drawing.Size(137, 20);
             this.TextRight.TabIndex = 25;
+            this.TextRight.Click += new System.EventHandler(this.TextRight_Click);
             // 
             // SanityCommanderMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Salmon;
             this.ClientSize = new System.Drawing.Size(812, 455);
             this.Controls.Add(this.TextRight);
             this.Controls.Add(this.TextLeft);
@@ -212,9 +207,8 @@
             this.Controls.Add(this.BackButton2);
             this.Controls.Add(this.BackButton1);
             this.Controls.Add(this.MoveButton);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.SearchButton);
+            this.Controls.Add(this.AttributesButton);
             this.Controls.Add(this.DecryptButton);
             this.Controls.Add(this.EncriptButton);
             this.Controls.Add(this.ExtractButton);
@@ -235,9 +229,8 @@
         private System.Windows.Forms.Button ExtractButton;
         private System.Windows.Forms.Button EncriptButton;
         private System.Windows.Forms.Button DecryptButton;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button AttributesButton;
+        private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Button MoveButton;
         private System.Windows.Forms.Button BackButton1;
         private System.Windows.Forms.Button BackButton2;

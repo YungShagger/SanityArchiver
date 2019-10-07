@@ -54,12 +54,12 @@ namespace SanityArchiver
             listView.Columns.Add("Name");
             listView.Columns.Add("Type");
             listView.Columns.Add("Last Modified");
-            listView.Columns.Add("Size(MB)");
+            listView.Columns.Add("Size");
 
             foreach (DirectoryInfo di in Directories)
             {
                 ListViewItem newItem = new ListViewItem(new string[]
-                { di.Name, "DIR", di.LastWriteTime.ToString(), "" });
+                { di.Name, "Directory", di.LastWriteTime.ToString(), "" });
                 newItem.ImageIndex = 2;
                 listView.Items.Add(newItem);
             }

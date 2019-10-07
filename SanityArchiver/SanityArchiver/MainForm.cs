@@ -160,5 +160,15 @@ namespace SanityArchiver
         {
             ///not yet implemented
         }
+
+        private void BackButton1_Click(object sender, EventArgs e)
+        {
+            ///not yet implemented
+        }
+
+        private void BackButton2_Click(object sender, EventArgs e)
+        {
+            ///not yet implemented
+        }
     }
 }

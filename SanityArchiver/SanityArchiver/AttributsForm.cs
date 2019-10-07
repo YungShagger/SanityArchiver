@@ -30,7 +30,10 @@ namespace SanityArchiver
             pathLabel.Text = path;
             for (int i = 0; i < AtributbeCheckList.Items.Count; i++)
             {
-                if (attributeArray.Contains(AtributbeCheckList.Items[i].ToString())) AtributbeCheckList.SetItemChecked(i, true);
+                if (attributeArray.Contains(AtributbeCheckList.Items[i].ToString()))
+                {
+                    AtributbeCheckList.SetItemChecked(i, true);
+                }
             }
         }
         private void AcceptButton_Click(object sender, EventArgs e)
@@ -42,7 +45,6 @@ namespace SanityArchiver
             {
                 attrArray[i] = AtributbeCheckList.CheckedItems[i].ToString();
             }
-
             FileManager.SetAttributes();
             MessageBox.Show("Attributes changed!");
             this.Close();

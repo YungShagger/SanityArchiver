@@ -139,6 +139,7 @@
             this.BackButton1.TabIndex = 19;
             this.BackButton1.Text = "Back";
             this.BackButton1.UseVisualStyleBackColor = true;
+            this.BackButton1.Click += new System.EventHandler(this.BackButton1_Click);
             // 
             // BackButton2
             // 
@@ -148,6 +149,7 @@
             this.BackButton2.TabIndex = 20;
             this.BackButton2.Text = "Back";
             this.BackButton2.UseVisualStyleBackColor = true;
+            this.BackButton2.Click += new System.EventHandler(this.BackButton2_Click);
             // 
             // textBox1
             // 

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.IO.Compression;
+using System.Collections.Generic;
+
+
 
 
 namespace SanityArchiver
@@ -139,14 +142,42 @@ namespace SanityArchiver
             ///not yet implemented
         }
 
-        public static void CompressFile(FileInfo fileToArchive, string path)
+        public static void CompressFile(FileInfo toCompress, string path)
         {
-            ///not yet implemented
+            using (FileStream input = toCompress.OpenRead())
+            {
+                FileStream output = File.Create(path + @"/" + toCompress.Name + ".gz");
+                using (GZipStream compress = new GZipStream(output, CompressionMode.Compress))
+                {
+                    Pump(output, compress);
+                }
+            }
         }
 
-        public static void ExtractFile(FileInfo file, string path)
+        public static void ExtractFile(FileInfo toExtract, string path)
         {
-            ///not yet implemented
+            using  (FileStream baseFileStream = toExtract.OpenRead())
+            {
+                string currentFileName = toExtract.Name;
+                string newFileName = Path.Combine(path, toExtract.Name.Substring(0, toExtract.Name.Length - 3));
+                using (FileStream decompressedFileStream = File.Create(newFileName))
+                {
+                    using (GZipStream decompressionStream = new GZipStream(baseFileStream, CompressionMode.Decompress))
+                    {
+                        decompressionStream.CopyTo(decompressedFileStream);
+                    }
+                }
+            }
+        }
+
+        private static void Pump(Stream input, Stream output)
+        {
+            byte[] bytes = new byte[4096];
+            int n;
+            while ((n = input.Read(bytes, 0, bytes.Length)) != 0)
+            {
+                output.Write(bytes, 0, n);
+            }
         }
     }
 }

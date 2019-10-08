@@ -107,23 +107,165 @@ namespace SanityArchiver
 
 
 
-
+            
         private void CopyButton_Click(object sender, EventArgs e)
         {
-            ///not yet implemented
+            string sourceDirectory = "";
+            string destinationDirectory = "";
+            FileInfo toCopy = null;
+
+            try
+            {
+                if (lastItemSelected.ListView.Name == "listViewLeft")
+                {
+                    toCopy = new FileInfo(leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text);
+                    sourceDirectory = leftRootString;
+                    destinationDirectory = rightRootString;
+                }
+                else if (lastItemSelected.ListView.Name == "listViewRight")
+                {
+                    toCopy = new FileInfo(rightRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text);
+                    sourceDirectory = rightRootString;
+                    destinationDirectory = leftRootString;
+                }
+                bool confirmed = Confirm(toCopy.Name, destinationDirectory, "Do you really want to Copy ");
+                if (confirmed)
+                {
+                    FileManager.CopyFile(toCopy.Name, sourceDirectory, destinationDirectory);
+                    Form1_Load(sender, e);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Please select a file to Copy!");
+            }
         }
         private void MoveButton_Click(object sender, EventArgs e)
         {
-            ///not yet implemented
+            string sourceDirectory = "";
+            string destinationDirectory = "";
+            FileInfo toMove = null;
+            try
+            {
+                if (lastItemSelected.ListView.Name == "listViewLeft")
+                {
+                    toMove = new FileInfo(leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text);
+                    sourceDirectory = leftRootString;
+                    destinationDirectory = rightRootString;
+                }
+                else if (lastItemSelected.ListView.Name == "listViewRight")
+                {
+                    toMove = new FileInfo(leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text);
+                    sourceDirectory = rightRootString;
+                    destinationDirectory = leftRootString;
+                }
+                bool confirmed = Confirm(toMove.Name, destinationDirectory, "Do you really want to Move ");
+                if (confirmed)
+                {
+                    FileManager.MoveFile(toMove.Name, sourceDirectory, destinationDirectory);
+                    Form1_Load(sender, e);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Please select a file to Move!");
+            }
         }
         private void CompressButton_Click(object sender, EventArgs e)
         {
-            ///not yet implemented
+            string destinationDirectory = "";
+            FileInfo toCompress = null;
+            try
+            {
+                if (lastItemSelected.ListView.Name == "listViewLeft")
+                {
+                    toCompress = new FileInfo(leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text);
+                    destinationDirectory = leftRootString;
+                }
+                else if (lastItemSelected.ListView.Name == "listViewRight")
+                {
+                    toCompress = new FileInfo(rightRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text);
+                    destinationDirectory = rightRootString;
+                }
+                bool confirmed = Confirm(toCompress.Name, destinationDirectory, "Do you really want to Compress ");
+                if (confirmed)
+                {
+                    FileManager.CompressFile(toCompress, destinationDirectory);
+                    Form1_Load(sender, e);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Please select a file to Compress!");
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("file is not found!");
+            }
         }
         private void ExtractButton_Click(object sender, EventArgs e)
         {
-            ///not yet implemented
+            string destinationDirectory = "";
+            FileInfo toExtract = null;
+            try
+            {
+                if (lastItemSelected.ListView.Name == "listViewLeft")
+                {
+                    toExtract = new FileInfo(leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[0].Text);
+                    destinationDirectory = leftRootString;
+                }
+                else if (lastItemSelected.ListView.Name == "listViewRight")
+                {
+                    toExtract = new FileInfo(rightRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text);
+                    destinationDirectory = rightRootString;
+                }
+                bool confirmed = Confirm(toExtract.Name, destinationDirectory, "Do you really want to Extract ");
+                if (confirmed)
+                {
+                    FileManager.ExtractFile(toExtract, destinationDirectory);
+                    Form1_Load(sender, e);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Please select a file to Compress!");
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("file is not found!");
+            }
         }
+        private void ExtractToButton_Click(object sender, EventArgs e)
+        {
+            string destinationDirectory = "";
+            FileInfo toExtract = null;
+            try
+            {
+                if (lastItemSelected.ListView.Name == "listViewLeft")
+                {
+                    toExtract = new FileInfo(leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[0].Text);
+                    destinationDirectory = rightRootString;
+                }
+                else if (lastItemSelected.ListView.Name == "listViewRight")
+                {
+                    toExtract = new FileInfo(rightRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text);
+                    destinationDirectory = leftRootString;
+                }
+                bool confirmed = Confirm(toExtract.Name, destinationDirectory, "Do you really want to Extract ");
+                if (confirmed)
+                {
+                    FileManager.ExtractFile(toExtract, destinationDirectory);
+                    Form1_Load(sender, e);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Please select a file to Compress!");
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("file is not found!");
+            }        }
         private void EncriptButton_Click(object sender, EventArgs e)
         {
             ///not yet implemented
@@ -154,21 +296,52 @@ namespace SanityArchiver
 
         private void TextLeft_Click(object sender, EventArgs e)
         {
-            ///not yet implemented
-        }
+            ///not yet implemented  
+        }   
         private void TextRight_Click(object sender, EventArgs e)
         {
             ///not yet implemented
         }
 
+
+
         private void BackButton1_Click(object sender, EventArgs e)
         {
-            ///not yet implemented
+            leftRootString = GetParentDirectoryString(leftRootString);
+            DirectoryManager.PopulateListView(listViewLeft, leftRootString, TextLeft);
         }
-
         private void BackButton2_Click(object sender, EventArgs e)
         {
-            ///not yet implemented
+            rightRootString = GetParentDirectoryString(rightRootString);
+            DirectoryManager.PopulateListView(listViewRight, rightRootString, TextRight);
         }
+
+
+
+
+        private bool Confirm(String file, String path, String message)
+        {
+            if (MessageBox.Show(message + file + "\r\nto:\r\n" +
+                    path + "?", "Yes", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            {
+                return true;
+            }
+            return false;
+        }
+        private string GetParentDirectoryString(string path)
+        {
+            string sub = path.Substring(0, path.Length - 1);
+            if (Directory.GetParent(sub).Exists && sub.Length > 4)
+            {
+                path = Directory.GetParent(sub).ToString();
+                if (path.Length > 4) path = path + @"\";
+                return path;
+            }
+            else
+            {
+                return path;
+            }
+        }
+
     }
 }

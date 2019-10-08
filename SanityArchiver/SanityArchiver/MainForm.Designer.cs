@@ -43,6 +43,8 @@
             this.listViewLeft = new System.Windows.Forms.ListView();
             this.TextLeft = new System.Windows.Forms.TextBox();
             this.TextRight = new System.Windows.Forms.TextBox();
+            this.ExtractToButton = new System.Windows.Forms.Button();
+            this.HelpButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CopyButton
@@ -80,7 +82,7 @@
             // 
             // EncriptButton
             // 
-            this.EncriptButton.Location = new System.Drawing.Point(369, 144);
+            this.EncriptButton.Location = new System.Drawing.Point(369, 170);
             this.EncriptButton.Margin = new System.Windows.Forms.Padding(2);
             this.EncriptButton.Name = "EncriptButton";
             this.EncriptButton.Size = new System.Drawing.Size(74, 22);
@@ -91,7 +93,7 @@
             // 
             // DecryptButton
             // 
-            this.DecryptButton.Location = new System.Drawing.Point(369, 169);
+            this.DecryptButton.Location = new System.Drawing.Point(370, 196);
             this.DecryptButton.Margin = new System.Windows.Forms.Padding(2);
             this.DecryptButton.Name = "DecryptButton";
             this.DecryptButton.Size = new System.Drawing.Size(74, 22);
@@ -102,7 +104,7 @@
             // 
             // AttributesButton
             // 
-            this.AttributesButton.Location = new System.Drawing.Point(369, 195);
+            this.AttributesButton.Location = new System.Drawing.Point(369, 222);
             this.AttributesButton.Margin = new System.Windows.Forms.Padding(2);
             this.AttributesButton.Name = "AttributesButton";
             this.AttributesButton.Size = new System.Drawing.Size(74, 22);
@@ -195,12 +197,35 @@
             this.TextRight.TabIndex = 25;
             this.TextRight.Click += new System.EventHandler(this.TextRight_Click);
             // 
+            // ExtractToButton
+            // 
+            this.ExtractToButton.Location = new System.Drawing.Point(370, 144);
+            this.ExtractToButton.Margin = new System.Windows.Forms.Padding(2);
+            this.ExtractToButton.Name = "ExtractToButton";
+            this.ExtractToButton.Size = new System.Drawing.Size(74, 22);
+            this.ExtractToButton.TabIndex = 26;
+            this.ExtractToButton.Text = "Extract To";
+            this.ExtractToButton.UseVisualStyleBackColor = true;
+            this.ExtractToButton.Click += new System.EventHandler(this.ExtractToButton_Click);
+            // 
+            // HelpButton
+            // 
+            this.HelpButton.Location = new System.Drawing.Point(13, 426);
+            this.HelpButton.Margin = new System.Windows.Forms.Padding(2);
+            this.HelpButton.Name = "HelpButton";
+            this.HelpButton.Size = new System.Drawing.Size(101, 22);
+            this.HelpButton.TabIndex = 27;
+            this.HelpButton.Text = "Help";
+            this.HelpButton.UseVisualStyleBackColor = true;
+            // 
             // SanityCommanderMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Salmon;
             this.ClientSize = new System.Drawing.Size(812, 455);
+            this.Controls.Add(this.HelpButton);
+            this.Controls.Add(this.ExtractToButton);
             this.Controls.Add(this.TextRight);
             this.Controls.Add(this.TextLeft);
             this.Controls.Add(this.listViewLeft);
@@ -241,6 +266,8 @@
         private System.Windows.Forms.ListView listViewLeft;
         private System.Windows.Forms.TextBox TextLeft;
         private System.Windows.Forms.TextBox TextRight;
+        private System.Windows.Forms.Button ExtractToButton;
+        private System.Windows.Forms.Button HelpButton;
     }
 }
 

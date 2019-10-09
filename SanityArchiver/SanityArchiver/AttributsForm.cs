@@ -45,7 +45,7 @@ namespace SanityArchiver
             {
                 attrArray[i] = AtributbeCheckList.CheckedItems[i].ToString();
             }
-            FileManager.SetAttributes();
+            FileManager.SetAttributes(path, attrArray);
             MessageBox.Show("Attributes changed!");
             this.Close();
         }

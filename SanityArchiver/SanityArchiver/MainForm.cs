@@ -211,7 +211,7 @@ namespace SanityArchiver
             {
                 if (lastItemSelected.ListView.Name == "listViewLeft")
                 {
-                    toExtract = new FileInfo(leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[0].Text);
+                    toExtract = new FileInfo(leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text);
                     destinationDirectory = leftRootString;
                 }
                 else if (lastItemSelected.ListView.Name == "listViewRight")
@@ -243,7 +243,7 @@ namespace SanityArchiver
             {
                 if (lastItemSelected.ListView.Name == "listViewLeft")
                 {
-                    toExtract = new FileInfo(leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[0].Text);
+                    toExtract = new FileInfo(leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text);
                     destinationDirectory = rightRootString;
                 }
                 else if (lastItemSelected.ListView.Name == "listViewRight")
@@ -268,11 +268,35 @@ namespace SanityArchiver
             }        }
         private void EncriptButton_Click(object sender, EventArgs e)
         {
-            ///not yet implemented
+            try
+            {
+                string FileName = lastItemSelected.ListView.Name == "listViewLeft" ? 
+                               leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text :
+                               rightRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text;
+               
+                FileManager.AddEncryption(FileName);
+                Form1_Load(sender, e);
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Please select a file to Encrypt!");
+            }
         }
         private void DecryptButton_Click(object sender, EventArgs e)
         {
-            ///not yet implemented
+            try
+            {
+                string FileName = lastItemSelected.ListView.Name == "listViewLeft" ?
+                               leftRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text :
+                               rightRootString + lastItemSelected.SubItems[0].Text + "." + lastItemSelected.SubItems[1].Text;
+
+                FileManager.RemoveEncryption(FileName);
+                Form1_Load(sender, e);
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Please select a file to Decrypt!");
+            }
         }
         private void AttributesButton_Click(object sender, EventArgs e)
         {
@@ -343,5 +367,9 @@ namespace SanityArchiver
             }
         }
 
+        private void listViewRight_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

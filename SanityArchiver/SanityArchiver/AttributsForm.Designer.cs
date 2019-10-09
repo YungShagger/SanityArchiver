@@ -37,6 +37,16 @@
             // AtributbeCheckList
             // 
             this.AtributbeCheckList.FormattingEnabled = true;
+            this.AtributbeCheckList.Items.AddRange(new object[] {
+            "Archive",
+            "Hidden",
+            "Normal",
+            "ReadOnly",
+            "Compressed",
+            "Directory",
+            "Encrypted",
+            "System",
+            "Temporary"});
             this.AtributbeCheckList.Location = new System.Drawing.Point(12, 27);
             this.AtributbeCheckList.Name = "AtributbeCheckList";
             this.AtributbeCheckList.Size = new System.Drawing.Size(246, 244);

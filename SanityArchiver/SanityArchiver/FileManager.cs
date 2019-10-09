@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.IO.Compression;
-using System.Collections.Generic;
+using System.Security.AccessControl;
 
 
 
@@ -137,23 +137,129 @@ namespace SanityArchiver
             }
             return attrArray;
         }
-        public static void SetAttributes()
+        private static FileAttributes RemoveAttribute(FileAttributes attributes, FileAttributes attributesToRemove)
         {
-            ///not yet implemented
+            return attributes & ~attributesToRemove;
+        }
+        public static void SetAttributes(string path, string[] attrArray)
+        {
+            {
+                if (attrArray.Contains(FileAttributes.Hidden.ToString()))
+                {
+                    File.SetAttributes(path, FileAttributes.Hidden);
+                }
+                else
+                {
+                    FileAttributes attributes = RemoveAttribute(File.GetAttributes(path), FileAttributes.Hidden);
+                    File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Hidden);
+                }
+
+                if (attrArray.Contains(FileAttributes.Archive.ToString()))
+                {
+                    File.SetAttributes(path, FileAttributes.Archive);
+                }
+                else
+                {
+                    FileAttributes attributes = RemoveAttribute(File.GetAttributes(path), FileAttributes.Archive);
+                    File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Archive);
+                }
+
+                if (attrArray.Contains(FileAttributes.Compressed.ToString()))
+                {
+                    File.SetAttributes(path, FileAttributes.Compressed);
+                }
+                else
+                {
+                    FileAttributes attributes = RemoveAttribute(File.GetAttributes(path), FileAttributes.Compressed);
+                    File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Compressed);
+                }
+
+                if (attrArray.Contains(FileAttributes.Directory.ToString()))
+                {
+                    File.SetAttributes(path, FileAttributes.Directory);
+                }
+                else
+                {
+                    FileAttributes attributes = RemoveAttribute(File.GetAttributes(path), FileAttributes.Directory);
+                    File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Directory);
+                }
+
+                if (attrArray.Contains(FileAttributes.Encrypted.ToString()))
+                {
+                    File.SetAttributes(path, FileAttributes.Encrypted);
+                }
+                else
+                {
+                    FileAttributes attributes = RemoveAttribute(File.GetAttributes(path), FileAttributes.Encrypted);
+                    File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Encrypted);
+                }
+
+                if (attrArray.Contains(FileAttributes.Normal.ToString()))
+                {
+                    File.SetAttributes(path, FileAttributes.Normal);
+                }
+                else
+                {
+                    FileAttributes attributes = RemoveAttribute(File.GetAttributes(path), FileAttributes.Normal);
+                    File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Normal);
+                }
+
+                if (attrArray.Contains(FileAttributes.ReadOnly.ToString()))
+                {
+                    File.SetAttributes(path, FileAttributes.ReadOnly);
+                }
+                else
+                {
+                    FileAttributes attributes = RemoveAttribute(File.GetAttributes(path), FileAttributes.ReadOnly);
+                    File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.ReadOnly);
+                }
+
+                if (attrArray.Contains(FileAttributes.System.ToString()))
+                {
+                    File.SetAttributes(path, FileAttributes.System);
+                }
+                else
+                {
+                    FileAttributes attributes = RemoveAttribute(File.GetAttributes(path), FileAttributes.System);
+                    File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.System);
+                }
+
+                if (attrArray.Contains(FileAttributes.Temporary.ToString()))
+                {
+                    File.SetAttributes(path, FileAttributes.Temporary);
+                }
+                else
+                {
+                    FileAttributes attributes = RemoveAttribute(File.GetAttributes(path), FileAttributes.Temporary);
+                    File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Temporary);
+                }
+            }
         }
 
         public static void CompressFile(FileInfo toCompress, string path)
         {
             using (FileStream input = toCompress.OpenRead())
             {
-                FileStream output = File.Create(path + @"/" + toCompress.Name + ".gz");
-                using (GZipStream compress = new GZipStream(output, CompressionMode.Compress))
+                MessageBox.Show(path + toCompress.Name + ".gz");
+                FileStream output = File.Create(path + toCompress.Name + ".gz");
+                GZipStream compressor = new GZipStream(output, CompressionMode.Compress);
+                int b = input.ReadByte();
+                while (b != -1)
                 {
-                    Pump(output, compress);
+                    compressor.WriteByte((byte)b);
+                    b = input.ReadByte();
                 }
-            }
-        }
+                compressor.Close();
+                input.Close();
+                output.Close();
 
+
+
+
+
+            }
+
+        }
         public static void ExtractFile(FileInfo toExtract, string path)
         {
             using  (FileStream baseFileStream = toExtract.OpenRead())
@@ -169,7 +275,6 @@ namespace SanityArchiver
                 }
             }
         }
-
         private static void Pump(Stream input, Stream output)
         {
             byte[] bytes = new byte[4096];
@@ -179,5 +284,16 @@ namespace SanityArchiver
                 output.Write(bytes, 0, n);
             }
         }
+
+ 
+
+
+
+
+
+
+
+
+
     }
 }

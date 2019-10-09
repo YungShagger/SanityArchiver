@@ -45,11 +45,12 @@
             this.TextRight = new System.Windows.Forms.TextBox();
             this.ExtractToButton = new System.Windows.Forms.Button();
             this.HelpButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CopyButton
             // 
-            this.CopyButton.Location = new System.Drawing.Point(369, 39);
+            this.CopyButton.Location = new System.Drawing.Point(369, 42);
             this.CopyButton.Margin = new System.Windows.Forms.Padding(2);
             this.CopyButton.Name = "CopyButton";
             this.CopyButton.Size = new System.Drawing.Size(74, 22);
@@ -60,7 +61,7 @@
             // 
             // CompressButton
             // 
-            this.CompressButton.Location = new System.Drawing.Point(369, 92);
+            this.CompressButton.Location = new System.Drawing.Point(369, 97);
             this.CompressButton.Margin = new System.Windows.Forms.Padding(2);
             this.CompressButton.Name = "CompressButton";
             this.CompressButton.Size = new System.Drawing.Size(74, 22);
@@ -71,7 +72,7 @@
             // 
             // ExtractButton
             // 
-            this.ExtractButton.Location = new System.Drawing.Point(369, 118);
+            this.ExtractButton.Location = new System.Drawing.Point(369, 123);
             this.ExtractButton.Margin = new System.Windows.Forms.Padding(2);
             this.ExtractButton.Name = "ExtractButton";
             this.ExtractButton.Size = new System.Drawing.Size(74, 22);
@@ -82,7 +83,7 @@
             // 
             // EncriptButton
             // 
-            this.EncriptButton.Location = new System.Drawing.Point(369, 170);
+            this.EncriptButton.Location = new System.Drawing.Point(370, 175);
             this.EncriptButton.Margin = new System.Windows.Forms.Padding(2);
             this.EncriptButton.Name = "EncriptButton";
             this.EncriptButton.Size = new System.Drawing.Size(74, 22);
@@ -93,7 +94,7 @@
             // 
             // DecryptButton
             // 
-            this.DecryptButton.Location = new System.Drawing.Point(370, 196);
+            this.DecryptButton.Location = new System.Drawing.Point(370, 201);
             this.DecryptButton.Margin = new System.Windows.Forms.Padding(2);
             this.DecryptButton.Name = "DecryptButton";
             this.DecryptButton.Size = new System.Drawing.Size(74, 22);
@@ -104,10 +105,10 @@
             // 
             // AttributesButton
             // 
-            this.AttributesButton.Location = new System.Drawing.Point(369, 222);
+            this.AttributesButton.Location = new System.Drawing.Point(369, 227);
             this.AttributesButton.Margin = new System.Windows.Forms.Padding(2);
             this.AttributesButton.Name = "AttributesButton";
-            this.AttributesButton.Size = new System.Drawing.Size(74, 22);
+            this.AttributesButton.Size = new System.Drawing.Size(75, 22);
             this.AttributesButton.TabIndex = 9;
             this.AttributesButton.Text = "Atributes";
             this.AttributesButton.UseVisualStyleBackColor = true;
@@ -125,7 +126,7 @@
             // 
             // MoveButton
             // 
-            this.MoveButton.Location = new System.Drawing.Point(369, 66);
+            this.MoveButton.Location = new System.Drawing.Point(369, 69);
             this.MoveButton.Name = "MoveButton";
             this.MoveButton.Size = new System.Drawing.Size(74, 23);
             this.MoveButton.TabIndex = 18;
@@ -145,7 +146,7 @@
             // 
             // BackButton2
             // 
-            this.BackButton2.Location = new System.Drawing.Point(725, 13);
+            this.BackButton2.Location = new System.Drawing.Point(725, 16);
             this.BackButton2.Name = "BackButton2";
             this.BackButton2.Size = new System.Drawing.Size(75, 20);
             this.BackButton2.TabIndex = 20;
@@ -164,11 +165,12 @@
             // 
             this.listViewRight.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listViewRight.HideSelection = false;
-            this.listViewRight.Location = new System.Drawing.Point(448, 39);
+            this.listViewRight.Location = new System.Drawing.Point(448, 42);
             this.listViewRight.Name = "listViewRight";
             this.listViewRight.Size = new System.Drawing.Size(352, 380);
             this.listViewRight.TabIndex = 22;
             this.listViewRight.UseCompatibleStateImageBehavior = false;
+            this.listViewRight.Click += new System.EventHandler(this.listViewRight_Click);
             // 
             // listViewLeft
             // 
@@ -191,7 +193,7 @@
             // 
             // TextRight
             // 
-            this.TextRight.Location = new System.Drawing.Point(585, 13);
+            this.TextRight.Location = new System.Drawing.Point(585, 17);
             this.TextRight.Name = "TextRight";
             this.TextRight.Size = new System.Drawing.Size(137, 20);
             this.TextRight.TabIndex = 25;
@@ -199,7 +201,7 @@
             // 
             // ExtractToButton
             // 
-            this.ExtractToButton.Location = new System.Drawing.Point(370, 144);
+            this.ExtractToButton.Location = new System.Drawing.Point(370, 149);
             this.ExtractToButton.Margin = new System.Windows.Forms.Padding(2);
             this.ExtractToButton.Name = "ExtractToButton";
             this.ExtractToButton.Size = new System.Drawing.Size(74, 22);
@@ -218,12 +220,23 @@
             this.HelpButton.Text = "Help";
             this.HelpButton.UseVisualStyleBackColor = true;
             // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(370, 400);
+            this.DeleteButton.Margin = new System.Windows.Forms.Padding(2);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(73, 22);
+            this.DeleteButton.TabIndex = 28;
+            this.DeleteButton.Text = "Delete";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            // 
             // SanityCommanderMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Salmon;
             this.ClientSize = new System.Drawing.Size(812, 455);
+            this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.HelpButton);
             this.Controls.Add(this.ExtractToButton);
             this.Controls.Add(this.TextRight);
@@ -268,6 +281,7 @@
         private System.Windows.Forms.TextBox TextRight;
         private System.Windows.Forms.Button ExtractToButton;
         private System.Windows.Forms.Button HelpButton;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }
 

@@ -14,8 +14,8 @@ namespace SanityArchiver
 {
     public partial class SanityCommanderMainWindow : Form
     {
-        int selectedRightIndex = 0;
         int selectedLeftIndex = 0;
+        int selectedRightIndex = 0;
         string leftRootString = @"C:\";
         string rightRootString = @"C:\";
         ListViewItem lastItemSelected;
@@ -365,11 +365,6 @@ namespace SanityArchiver
             {
                 return path;
             }
-        }
-
-        private void listViewRight_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

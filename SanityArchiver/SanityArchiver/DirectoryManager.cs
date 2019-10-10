@@ -41,8 +41,6 @@ namespace SanityArchiver
             AddFilesToListView(listView, rootDirName, textBox);
         }
 
-
-
         private static void AddFilesToListView(ListView listView, String rootDirName, TextBox textBox)
         {
             listView.Clear();
@@ -56,16 +54,16 @@ namespace SanityArchiver
             listView.Columns.Add("Last Modified");
             listView.Columns.Add("Size");
 
-            foreach (DirectoryInfo di in Directories)
+            foreach (DirectoryInfo dir in Directories)
             {
                 ListViewItem newItem = new ListViewItem(new string[]
-                { di.Name, "Directory", di.LastWriteTime.ToString(), "" });
+                { dir.Name, "Directory", dir.LastWriteTime.ToString(), "" });
                 newItem.ImageIndex = 2;
                 listView.Items.Add(newItem);
             }
-            foreach (FileInfo fi in Files)
+            foreach (FileInfo currentFile in Files)
             {
-                string[] fileNameArray = fi.Name.Split('.');
+                string[] fileNameArray = currentFile.Name.Split('.');
 
                 string name = fileNameArray[0];
                 for (int i = 1; i < fileNameArray.Length - 1; i++)
@@ -74,8 +72,8 @@ namespace SanityArchiver
                 }
                 string type = fileNameArray[fileNameArray.Length - 1];
                 ListViewItem newItem = new ListViewItem(new string[]
-                    { name, type, fi.LastWriteTime.ToString(), Math.Round(fi.Length*0.000001024, 5).ToString()});
-                FileAttributes attributes = File.GetAttributes(fi.FullName);
+                    { name, type, currentFile.LastWriteTime.ToString(), Math.Round(currentFile.Length*0.000001024, 5).ToString()});
+                FileAttributes attributes = File.GetAttributes(currentFile.FullName);
                 if ((attributes & FileAttributes.Encrypted) == FileAttributes.Encrypted)
                 {
                     newItem.ImageIndex = 5;
@@ -112,20 +110,7 @@ namespace SanityArchiver
             }
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
-        public static void SearchFiles(string rootDir, string pattern, ListView listView)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            string regex = $"*{pattern}*";
-            var FilePaths = GetFiles(rootDir, regex);
-            Cursor.Current = Cursors.Default;
-
-            Files = (from f in FilePaths where !Directory.Exists(f) select new FileInfo(f)).ToArray();
-            Directories = (from f in FilePaths where Directory.Exists(f) select new DirectoryInfo(f)).ToArray();
-
-            AddFilesToListView(listView, null, null);
-        }
-
-
+       
         public static List<string> GetFiles(string path, string regex)
         {
             var files = new List<string>();
@@ -141,24 +126,24 @@ namespace SanityArchiver
         }
         public static string GetFilePath(String FileName)
         {
-            foreach (FileInfo fi in Files)
+            foreach (FileInfo currentFile in Files)
             {
-                if (fi.Name == FileName) return fi.FullName;
+                if (currentFile.Name == FileName) return currentFile.FullName;
             }
             return "";
         }
         public static string GetDirPath(String DirName)
         {
-            DirectoryInfo di = new DirectoryInfo(DirName);
-            if (di.Exists)
+            DirectoryInfo dir = new DirectoryInfo(DirName);
+            if (dir.Exists)
             {
-                return di.FullName;
+                return dir.FullName;
             }
             return "";
         }
-        public static double GetDirSize(DirectoryInfo d)
+        public static double GetDirSize(DirectoryInfo dir)
         {
-            string rootDir = d.FullName;
+            string rootDir = dir.FullName;
 
             long dirSize = 0;
             var FilePaths = GetFiles(rootDir, "*");

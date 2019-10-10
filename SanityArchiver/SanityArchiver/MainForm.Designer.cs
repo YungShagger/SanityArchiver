@@ -164,13 +164,13 @@
             // listViewRight
             // 
             this.listViewRight.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listViewRight.FullRowSelect = true;
             this.listViewRight.HideSelection = false;
             this.listViewRight.Location = new System.Drawing.Point(448, 42);
             this.listViewRight.Name = "listViewRight";
             this.listViewRight.Size = new System.Drawing.Size(352, 380);
             this.listViewRight.TabIndex = 22;
             this.listViewRight.UseCompatibleStateImageBehavior = false;
-            this.listViewRight.Click += new System.EventHandler(this.listViewRight_Click);
             // 
             // listViewLeft
             // 
@@ -187,6 +187,7 @@
             // 
             this.TextLeft.Location = new System.Drawing.Point(147, 16);
             this.TextLeft.Name = "TextLeft";
+            this.TextLeft.ReadOnly = true;
             this.TextLeft.Size = new System.Drawing.Size(137, 20);
             this.TextLeft.TabIndex = 24;
             this.TextLeft.Click += new System.EventHandler(this.TextLeft_Click);
@@ -195,6 +196,7 @@
             // 
             this.TextRight.Location = new System.Drawing.Point(585, 17);
             this.TextRight.Name = "TextRight";
+            this.TextRight.ReadOnly = true;
             this.TextRight.Size = new System.Drawing.Size(137, 20);
             this.TextRight.TabIndex = 25;
             this.TextRight.Click += new System.EventHandler(this.TextRight_Click);
@@ -256,7 +258,7 @@
             this.Controls.Add(this.CopyButton);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SanityCommanderMainWindow";
-            this.Text = "Sanity Commander";
+            this.Text = "Totaly A Commander";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -34,9 +34,6 @@ namespace SanityArchiver
 
             Directory.Delete(target_dir, false);
         }
-
-
-
         public static void CopyFile(String name, String sourcePath, String targetPath)
         {
             string sourceFile = Path.Combine(sourcePath, name);
@@ -115,7 +112,7 @@ namespace SanityArchiver
 
         public static void AddEncryption(string FileName)
         {
-            File.Encrypt(FileName);
+             File.Encrypt(FileName);
         }
         public static void RemoveEncryption(string FileName)
         {
@@ -240,7 +237,6 @@ namespace SanityArchiver
         {
             using (FileStream input = toCompress.OpenRead())
             {
-                MessageBox.Show(path + toCompress.Name + ".gz");
                 FileStream output = File.Create(path + toCompress.Name + ".gz");
                 GZipStream compressor = new GZipStream(output, CompressionMode.Compress);
                 int b = input.ReadByte();

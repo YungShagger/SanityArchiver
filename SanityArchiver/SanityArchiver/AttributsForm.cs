@@ -17,6 +17,7 @@ namespace SanityArchiver
         {
             InitializeComponent();
             FillAttributesList(path);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

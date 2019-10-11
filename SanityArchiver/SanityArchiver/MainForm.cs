@@ -33,6 +33,7 @@ namespace SanityArchiver
             string rightRootDirName = Path.GetFullPath(rightRootString);
             DirectoryManager.PopulateListView(listViewLeft, leftRootDirName, TextLeft);
             DirectoryManager.PopulateListView(listViewRight, rightRootDirName, TextRight);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
 
@@ -281,6 +282,10 @@ namespace SanityArchiver
             {
                 MessageBox.Show("Please select a file to Encrypt!");
             }
+            catch (IOException)
+            {
+                MessageBox.Show("Your Windows license have no access to this function");
+            }
         }
         private void DecryptButton_Click(object sender, EventArgs e)
         {
@@ -296,6 +301,10 @@ namespace SanityArchiver
             catch (NullReferenceException)
             {
                 MessageBox.Show("Please select a file to Decrypt!");
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("Your Windows license have no access to this function");
             }
         }
         private void AttributesButton_Click(object sender, EventArgs e)
